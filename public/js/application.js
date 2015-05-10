@@ -1,7 +1,33 @@
-$(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
+angular.module('wordasaurus', ['ngRoute'])
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
-});
+.config(['$routeProvider', function($routeProvider) {
+  $routeProvider
+    // .when('/', {
+    //   redirectTo: '/notes'
+    // })
+
+    .when('/', {
+      templateUrl: 'partials/home/index.html',
+      controller: 'UsersIndexController'
+    })
+
+    .when('/users', {
+      templateUrl: 'partials/home/stuff.html',
+      controller: 'UsersIndexController'
+    })
+
+    .when('/users/:id', {
+      templateUrl: 'templates/pages/users/show.html',
+      controller: 'UsersShowController'
+    })
+
+    .otherwise({redirectTo: '/'});
+}])
+
+.controller('HomeController', ['$scope', function ($scope) {
+  $scope.corn = 'wtf';
+}])
+
+.controller('UsersIndexController', ['$scope', function ($scope) {
+  $scope.corn = 'wtf';
+}])
