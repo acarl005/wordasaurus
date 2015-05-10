@@ -11,8 +11,8 @@ angular.module('wordasaurus', ['ngRoute'])
       controller: 'UsersIndexController'
     })
 
-    .when('/users', {
-      templateUrl: 'partials/home/stuff.html',
+    .when('/my_pieces', {
+      templateUrl: 'partials/users/index.html',
       controller: 'UsersIndexController'
     })
 
@@ -24,10 +24,30 @@ angular.module('wordasaurus', ['ngRoute'])
     .otherwise({redirectTo: '/'});
 }])
 
-.controller('HomeController', ['$scope', function ($scope) {
+.controller('HomeController', ['$scope', 'Piece', function ($scope, Piece) {
+  $scope.pieces = Piece.all();
   $scope.corn = 'wtf';
 }])
 
 .controller('UsersIndexController', ['$scope', function ($scope) {
   $scope.corn = 'wtf';
+}])
+
+.factory('Piece', ['$http', function NoteFactory($http) {
+  return {
+    all: function(user_id) {
+      return $http({method: 'GET', url: 'users/'+user_id+'/pieces'})
+    }
+  };
+}])
+
+.factory('User', ['$http', function UserFactory($http) {
+  return {
+    current: function() {
+      return $http({method: 'GET', url: 'users/current'})
+    },
+    find: function(id) {
+      return $http({method: 'GET', url: 'users/'+id })
+    }
+  };
 }])
