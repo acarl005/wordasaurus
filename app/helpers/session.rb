@@ -1,6 +1,10 @@
 helpers do
 
-  def get_user(id)
+  def get_user(email)
+    return User.where(email: email).first || redirect('/')
+  end
+
+  def find_user(id)
     begin
       return User.find(id)
     rescue ActiveRecord::RecordNotFound

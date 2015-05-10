@@ -7,6 +7,7 @@ rescue ActiveRecord::RecordInvalid
 end
 
 a = Piece.create!(
+  title: 'Bacon Ipsum',
   content: "\tBacon ipsum dolor amet swine beef corned beef prosciutto meatloaf filet mignon \
 beef ribs drumstick bresaola fatback rump jowl ribeye cupim. Sirloin ball tip cow \
 rump, boudin pork jerky ham meatloaf tenderloin tail. Ham hock short loin ribeye, \

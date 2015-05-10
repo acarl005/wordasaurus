@@ -3,7 +3,7 @@ get('/') do
 end
 
 post('/session') do
-  @user = get_user(params[:id])
+  @user = get_user(params[:email])
   if @user.password == params[:password]
     login(@user)
     redirect('/')
@@ -14,16 +14,17 @@ post('/session') do
 end
 
 get('/users/current') do
-  @user = get_user(current_user)
-  return @user.to_json if request.xhr?
+  @user = find_user(current_user)
+  p @user.to_json
+  return @user.to_json
 end
 
 get('/users/:id') do
-  @user = get_user(params[:id])
-  return @user.to_json if request.xhr?
+  @user = find_user(params[:id].to_i)
+  return @user.to_json
 end
 
 get('/users/:id/pieces') do
-  @user = get_user(params[:id])
-  return @user.essays.to_json if request.xhr?
+  @user = find_user(params[:id].to_i)
+  return @user.pieces.to_json
 end

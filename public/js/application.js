@@ -24,19 +24,22 @@ angular.module('wordasaurus', ['ngRoute'])
     .otherwise({redirectTo: '/'});
 }])
 
-.controller('HomeController', ['$scope', 'Piece', function ($scope, Piece) {
-  $scope.pieces = Piece.all();
-  $scope.corn = 'wtf';
+.controller('UsersIndexController', ['$scope', 'User' , 'Piece', function ($scope, User, Piece) {
+  User.current().success(function(res) {
+    $scope.user = res
+    Piece.all($scope.user.id).success(function(res) {$scope.pieces = res});
+  });
+
 }])
 
-.controller('UsersIndexController', ['$scope', function ($scope) {
+.controller('HomeController', ['$scope', function ($scope) {
   $scope.corn = 'wtf';
 }])
 
 .factory('Piece', ['$http', function NoteFactory($http) {
   return {
     all: function(user_id) {
-      return $http({method: 'GET', url: 'users/'+user_id+'/pieces'})
+      return $http.get('users/'+user_id+'/pieces')
     }
   };
 }])
@@ -44,10 +47,10 @@ angular.module('wordasaurus', ['ngRoute'])
 .factory('User', ['$http', function UserFactory($http) {
   return {
     current: function() {
-      return $http({method: 'GET', url: 'users/current'})
+      return $http.get('users/current');
     },
     find: function(id) {
-      return $http({method: 'GET', url: 'users/'+id })
+      return $http.get('users/'+id)
     }
   };
 }])
