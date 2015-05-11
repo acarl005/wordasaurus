@@ -32,7 +32,7 @@ end
 post('/pieces') do
   @user = find_user(current_user)
   @piece = Piece.new(title: params[:title], content: params[:content])
-  if @user << @piece
+  if @user.pieces << @piece
     status(200)
   else
     status(401)
