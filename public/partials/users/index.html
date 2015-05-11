@@ -1,7 +1,8 @@
 <div class="panel panel-default">
   <div class="panel-body">
+
     <div ng-init="tab='button'">
-      <button class="btn btn-primary" ng-click="tab='form'" ng-show="tab==='button'">Add Piece</button>
+      <button class="btn btn-primary disp-inb" ng-click="tab='form'" ng-show="tab==='button'">Add Piece</button>
       <form ng-show="tab==='form'" method="post" action="/pieces">
         <div class="form-group">
           <label for="new-title">Title</label>
@@ -16,14 +17,21 @@
         <button ng-click="tab='button'" class="btn btn-default">Close</button>
       </form>
     </div>
+
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle disp-inb" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+        Dropdown
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li ng-repeat="piece in pieces" role="presentation">
+          <a ng-click="stuff.activePiece = piece" role="menuitem" tabindex="-1" >{{piece.title}}</a>
+        </li>
+      </ul>
+    </div>
+
   </div>
 </div>
-
-<ul class="list-group">
-  <li ng-repeat="piece in pieces" class="list-group-item">
-    <p ng-click="stuff.activePiece = piece" class="mar-0">{{piece.title}}</a>
-  </li>
-</ul>
 
 <section id="show-piece">
   <span ng-repeat="word in stuff.activePiece.content.split(' ') track by $index" ng-click="setActive($index, word)">

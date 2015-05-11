@@ -73,8 +73,11 @@
   margin: 0;
 }
 
+disp-inb {
+  display: inline-block;
+}
+
 #synonyms h4,
 #synonyms h5 {
   font-weight: 600;
-
 }
