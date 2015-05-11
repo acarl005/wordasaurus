@@ -25,13 +25,26 @@ angular.module('wordasaurus', ['ngRoute'])
     .otherwise({redirectTo: '/'});
 }])
 
-.controller('UsersIndexController', ['$scope', 'User' , 'Piece', function ($scope, User, Piece) {
+.controller('UsersIndexController', ['$scope', '$http', 'User' , 'Piece', function ($scope, $http, User, Piece) {
+  var vm = this;
   User.current().success(function(res) {
     $scope.user = res
     Piece.all($scope.user.id).success(function(res) {$scope.pieces = res});
   });
-  this.activePiece = {};
-  this.activeWord = '';
+  $scope.getSyns = function(word) {
+    $http.get('/sample').success(function(res) {vm.syn_json[word] = res});
+  };
+  $scope.setActive = function(index, word) {
+    vm.activeWord = word.toLowerCase().match(/[a-z]+/g)[0];
+    vm.activeIndex = index;
+    $scope.getSyns(vm.activeWord)
+  };
+  $scope.embedWord = function(word) {
+    $('#show-piece span:nth-child(' + (vm.activeIndex+1) + ')').text(word+' ');
+  };
+  vm.syn_json = {}
+  vm.activePiece = {};
+  vm.activeWord = '';
 }])
 
 .controller('HomeController', ['$scope', function ($scope) {

@@ -28,3 +28,36 @@ get('/users/:id/pieces') do
   @user = find_user(params[:id].to_i)
   return @user.pieces.to_json
 end
+
+get('/sample') do
+  return {
+    noun: {
+      syn: [
+        "illustration",
+        "instance",
+        "representative",
+        "model",
+        "exemplar",
+        "good example",
+        "deterrent example",
+        "lesson",
+        "object lesson",
+        "case",
+        "exercise",
+        "admonition",
+        "happening",
+        "ideal",
+        "information",
+        "internal representation",
+        "mental representation",
+        "monition",
+        "natural event",
+        "occurrence",
+        "occurrent",
+        "representation",
+        "warning",
+        "word of advice"
+      ]
+    }
+  }.to_json
+end

@@ -1,3 +1,5 @@
+<h1>{{corn}}</h1>
+
 {{user.id}}
 <ul>
   <li ng-repeat="piece in pieces">
@@ -5,9 +7,15 @@
   </li>
 </ul>
 
-<section>
-  <span ng-repeat="word in stuff.activePiece.content.split(' ') track by $index" ng-click="stuff.activeWord = word">
+<section id="show-piece">
+  <span ng-repeat="word in stuff.activePiece.content.split(' ') track by $index" ng-click="setActive($index, word)">
     {{word}}
   </span>
   <p>{{stuff.activeWord}}</p>
+  <ul>
+    <li ng-repeat="syn in stuff.syn_json[stuff.activeWord].noun.syn" ng-click="embedWord(syn)">
+      {{syn}}
+    </li>
+  </ul>
+
 </section>
