@@ -29,6 +29,16 @@ get('/users/:id/pieces') do
   return @user.pieces.to_json
 end
 
+post('/pieces') do
+  @user = find_user(current_user)
+  @piece = Piece.new(title: params[:title], content: params[:content])
+  if @user << @piece
+    status(200)
+  else
+    status(401)
+  end
+end
+
 get('/sample') do
   return {
     noun: {

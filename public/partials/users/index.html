@@ -1,8 +1,24 @@
 <h1>{{corn}}</h1>
 
 {{user.id}}
-<ul>
-  <li ng-repeat="piece in pieces">
+<div ng-init="tab='button'">
+  <button class="btn btn-primary" ng-click="tab='form'" ng-show="tab==='button'">Add Piece</button>
+  <form ng-show="tab==='form'" method="post" action="/pieces">
+    <div class="form-group">
+      <label for="new-title">Title</label>
+      <input type="text" class="form-control" id="new-title" name="title" required>
+    </div>
+    <div class="form-group">
+      <label for="new-piece">New Piece</label>
+      <textarea class="form-control" id="new-piece" name="content" placeholder="Express yourself!" rows="10" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button ng-click="tab='button'" class="btn btn-default">Close</button>
+  </form>
+</div>
+<ul class="list-group">
+  <li ng-repeat="piece in pieces" class="list-group-item">
     <p ng-click="stuff.activePiece = piece">{{piece.title}}</a>
   </li>
 </ul>

@@ -8,13 +8,10 @@ angular.module('wordasaurus', ['ngRoute'])
 
     .when('/', {
       templateUrl: 'partials/home/index.html',
-      controller: 'UsersIndexController'
     })
 
     .when('/my_pieces', {
       templateUrl: 'partials/users/index.html',
-      controller: 'UsersIndexController',
-      controllerAs: 'stuff'
     })
 
     .when('/users/:id', {
@@ -25,14 +22,17 @@ angular.module('wordasaurus', ['ngRoute'])
     .otherwise({redirectTo: '/'});
 }])
 
-.controller('UsersIndexController', ['$scope', '$http', 'User' , 'Piece', function ($scope, $http, User, Piece) {
+.controller('HomeController', ['$scope', '$http', 'User' , 'Piece', function ($scope, $http, User, Piece) {
   var vm = this;
+  var endpoint = 'http://words.bighugelabs.com/api/2/36312c87d8575d1476ece69c8dd8bdc1/'
   User.current().success(function(res) {
     $scope.user = res
     Piece.all($scope.user.id).success(function(res) {$scope.pieces = res});
   });
   $scope.getSyns = function(word) {
-    $http.get('/sample').success(function(res) {vm.syn_json[word] = res});
+    if (!vm.syn_json[word]) {
+      $http.get(endpoint+word+'/json').success(function(res) {vm.syn_json[word] = res});
+    }
   };
   $scope.setActive = function(index, word) {
     vm.activeWord = word.toLowerCase().match(/[a-z]+/g)[0];
@@ -47,9 +47,9 @@ angular.module('wordasaurus', ['ngRoute'])
   vm.activeWord = '';
 }])
 
-.controller('HomeController', ['$scope', function ($scope) {
-  $scope.corn = 'wtf';
-}])
+// .controller('HomeController', ['$scope', function ($scope) {
+//   $scope.corn = 'wtf';
+// }])
 
 .factory('Piece', ['$http', function NoteFactory($http) {
   return {
