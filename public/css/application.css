@@ -66,8 +66,15 @@
 
 #show-piece {
   font-family: "roboto slab";
+  line-height: 200%;
 }
 
 .mar-0 {
   margin: 0;
+}
+
+#synonyms h4,
+#synonyms h5 {
+  font-weight: 600;
+
 }
