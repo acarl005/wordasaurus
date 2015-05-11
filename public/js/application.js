@@ -13,7 +13,8 @@ angular.module('wordasaurus', ['ngRoute'])
 
     .when('/my_pieces', {
       templateUrl: 'partials/users/index.html',
-      controller: 'UsersIndexController'
+      controller: 'UsersIndexController',
+      controllerAs: 'stuff'
     })
 
     .when('/users/:id', {
@@ -29,7 +30,8 @@ angular.module('wordasaurus', ['ngRoute'])
     $scope.user = res
     Piece.all($scope.user.id).success(function(res) {$scope.pieces = res});
   });
-
+  this.activePiece = {};
+  this.activeWord = '';
 }])
 
 .controller('HomeController', ['$scope', function ($scope) {

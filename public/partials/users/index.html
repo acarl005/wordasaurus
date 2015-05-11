@@ -1,2 +1,13 @@
 {{user.id}}
-{{pieces[0].content}}
+<ul>
+  <li ng-repeat="piece in pieces">
+    <p ng-click="stuff.activePiece = piece">{{piece.title}}</a>
+  </li>
+</ul>
+
+<section>
+  <span ng-repeat="word in stuff.activePiece.content.split(' ') track by $index" ng-click="stuff.activeWord = word">
+    {{word}}
+  </span>
+  <p>{{stuff.activeWord}}</p>
+</section>
