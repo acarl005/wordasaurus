@@ -19,10 +19,12 @@
 .nav-collapse>li { float: right; }
 
 .btn.btn-circle { border-radius: 50px; }
+#sign-in { color: white; }
+#sign-in:hover { color: #bbb; }
 .btn.btn-outline { background-color: transparent; }
 
 .navbar-nav.navbar-right .btn:not(.collapsed) {
-  background-color: black;
+  background-color: transparent;
   border-color: black;
   color: rgb(255, 255, 255);
 }
