@@ -3,30 +3,47 @@ get('/') do
 end
 
 post('/session') do
-  @user = get_user(params[:email])
-  if @user.password == params[:password]
+  @user = User.where(email: params[:email]).first
+  if @user && @user.password == params[:password]
     login(@user)
     redirect('/')
   else
     status(401)
-    return 'invalid info'
+    return 'invalid password'
   end
+  status(400)
+  return 'email not found'
 end
 
-get('/users/current') do
+get('/users/current', provides: :json) do
   @user = find_user(current_user)
   p @user.to_json
   return @user.to_json
 end
 
-get('/users/:id') do
+get('/users/:id', provides: :json) do
   @user = find_user(params[:id].to_i)
   return @user.to_json
 end
 
-get('/users/:id/pieces') do
+get('/users/:id/pieces', provides: :json) do
   @user = find_user(params[:id].to_i)
   return @user.pieces.to_json
+end
+
+get('pieces/:id/syns', provides: :json) do
+  @piece = Piece.find(params[:id])
+  return @piece.syn_json
+end
+
+post('pieces/:id/syns') do
+  @piece = Piece.find(params[:id])
+  @piece.syn_json = params[:syn_json]
+  if @piece.save
+    status(200)
+  else
+    status(400)
+  end
 end
 
 post('/pieces') do
@@ -39,7 +56,7 @@ post('/pieces') do
   end
 end
 
-get('/sample') do
+get('/sample', provides: :json) do
   return {
     noun: {
       syn: [

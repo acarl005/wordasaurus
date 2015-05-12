@@ -29,18 +29,29 @@ angular.module('wordasaurus', ['ngRoute'])
     $scope.user = res
     Piece.all($scope.user.id).success(function(res) {$scope.pieces = res});
   });
+  $scope.setActivePiece = function(piece) {
+    vm.activePiece = piece
+    $http.get()
+  }
   $scope.getSyns = function(word) {
     if (!vm.syn_json[word]) {
-      $http.get(endpoint+word+'/json').success(function(res) {vm.syn_json[word] = res});
+      $http.get(endpoint+word+'/json').success(function(res) {
+        vm.syn_json[word] = res
+        $scope.saveSyns();
+      });
     }
   };
-  $scope.setActive = function(index, word) {
+  $scope.setActiveWord = function(index, word) {
     vm.activeWord = word.toLowerCase().match(/[a-z]+/g)[0];
     vm.activeIndex = index;
     $scope.getSyns(vm.activeWord)
   };
   $scope.embedWord = function(word) {
-    $('#show-piece span:nth-child(' + (vm.activeIndex+1) + ')').text(word+' ');
+    var target = $('#show-piece span:nth-child(' + (vm.activeIndex+1) + ')')
+    target.text(target.text().replace(/[a-z]+/i, word));
+  };
+  $scope.saveSyns = function() {
+    $http.post(vm.syn_json)
   };
   vm.syn_json = {}
   vm.activePiece = {};

@@ -25,7 +25,7 @@
       </button>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
         <li ng-repeat="piece in pieces" role="presentation">
-          <a ng-click="stuff.activePiece = piece" role="menuitem" tabindex="-1" >{{piece.title}}</a>
+          <a ng-click="setActivePiece(piece)" role="menuitem" tabindex="-1" >{{piece.title}}</a>
         </li>
       </ul>
     </div>
@@ -34,7 +34,7 @@
 </div>
 
 <section id="show-piece">
-  <span ng-repeat="word in stuff.activePiece.content.split(' ') track by $index" ng-click="setActive($index, word)">
+  <span ng-repeat="word in stuff.activePiece.content.split(' ') track by $index" ng-click="setActiveWord($index, word)">
     {{word}}
   </span>
 </section>
@@ -42,10 +42,12 @@
 <section id="synonyms">
   <h4>{{stuff.activeWord}}</h4>
 
-  <ul ng-repeat="(part, set) in stuff.syn_json[stuff.activeWord]">
+  <article ng-repeat="(part, set) in stuff.syn_json[stuff.activeWord]">
     <h5>{{part}}</h5>
-    <li ng-repeat="syn in set.syn" ng-click="embedWord(syn)">
-      {{syn}}
-    </li>
-  </ul>
+    <ul>
+      <li ng-repeat="syn in set.syn" ng-click="embedWord(syn)">
+        {{syn}}
+      </li>
+    </ul>
+  </article>
 </section>
