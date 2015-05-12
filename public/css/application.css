@@ -71,23 +71,23 @@
   line-height: 200%;
 }
 
-.mar-0 {
-  margin: 0;
-}
-
-.mar-t-sm {
-  margin-top: 20px;
-}
-
-.disp-inb {
-  display: inline-block;
-}
-
-.hide {
-  display: none;
-}
+.mar-0 { margin: 0; }
+.mar-t-sm { margin-top: 20px; }
+.disp-inb { display: inline-block; }
+.hide { display: none; }
 
 #synonyms h4,
 #synonyms h5 {
   font-weight: 600;
+}
+
+#jumbo {
+  background-image: url('/imgs/bg1.jpg');
+  background-size: 100%;
+  padding: 175px;
+  margin-top: -20px;
+}
+
+#jumbo h1 {
+  color: white;
 }
