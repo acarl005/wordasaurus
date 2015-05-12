@@ -73,8 +73,16 @@
   margin: 0;
 }
 
-disp-inb {
+.mar-t-sm {
+  margin-top: 20px;
+}
+
+.disp-inb {
   display: inline-block;
+}
+
+.hide {
+  display: none;
 }
 
 #synonyms h4,

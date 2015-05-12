@@ -62,6 +62,7 @@ post('/pieces') do
   @piece = Piece.new(title: params[:title], content: params[:content])
   if @user.pieces << @piece
     status(200)
+    redirect('/#/my_pieces')
   else
     status(401)
   end

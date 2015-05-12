@@ -31,6 +31,7 @@ angular.module('wordasaurus', ['ngRoute'])
   });
   $scope.setActivePiece = function(piece) {
     vm.activePiece = piece
+    debugger;
     $http.get('/pieces/'+vm.activePiece.id+'/syns').success(function(res) {
       vm.syn_json = res;
     });
@@ -52,6 +53,8 @@ angular.module('wordasaurus', ['ngRoute'])
   $scope.embedWord = function(word) {
     var target = $('#show-piece span:nth-child(' + (vm.activeIndex+1) + ')')
     target.text(target.text().replace(/[a-z]+/i, word));
+    // $('#edit-piece').val($scope.stripSpan());
+    // $('#edit-piece').text() = $scope.stripSpan();
   };
   $scope.saveSyns = function() {
     $http.post('/pieces/'+vm.activePiece.id+'/syns', {syn_json: JSON.stringify(vm.syn_json)} )
@@ -62,7 +65,14 @@ angular.module('wordasaurus', ['ngRoute'])
     });
   }
   $scope.stripSpan = function() {
-    return ($('#show-piece').text().match(/\S+/gi) || []).join(' ') || ''
+    return ($('#show-piece').text().match(/\S+/gi) || []).join(' ')
+  }
+  $scope.refreshActiveFromSyn = function() {
+    vm.activePiece.content = $scope.stripSpan();
+    $('#edit-piece').val(vm.activePiece.content);
+  }
+  $scope.refreshActiveFromEdit = function() {
+    vm.activePiece.content = $('#edit-piece').val();
   }
   vm.syn_json = {};
   vm.activePiece = {};
