@@ -31,7 +31,6 @@ angular.module('wordasaurus', ['ngRoute'])
   });
   $scope.setActivePiece = function(piece) {
     vm.activePiece = piece
-    debugger;
     $http.get('/pieces/'+vm.activePiece.id+'/syns').success(function(res) {
       vm.syn_json = res;
     });
