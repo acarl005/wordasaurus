@@ -46,6 +46,17 @@ post('/pieces/:id/syns') do
   end
 end
 
+put('/pieces/:id') do
+  @user = find_user(current_user)
+  @piece = @user.pieces.find(params[:id])
+  @piece.content = JSON.parse(request.body.read)['content']
+  if @piece.save
+    status(200)
+  else
+    status(422)
+  end
+end
+
 post('/pieces') do
   @user = find_user(current_user)
   @piece = Piece.new(title: params[:title], content: params[:content])

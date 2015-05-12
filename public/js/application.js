@@ -55,14 +55,15 @@ angular.module('wordasaurus', ['ngRoute'])
   };
   $scope.saveSyns = function() {
     $http.post('/pieces/'+vm.activePiece.id+'/syns', {syn_json: JSON.stringify(vm.syn_json)} )
-    // $http({
-    //   method: 'post',
-    //   url: '/pieces/'+vm.activePiece.id+'/syns',
-    //   params: {
-    //     syn_json: JSON.stringify(vm.syn_json)
-    //   }
-    // });
   };
+  $scope.savePiece = function() {
+    $http.put('/pieces/'+vm.activePiece.id, {content: $scope.stripSpan()} ).success(function() {
+      alert('Saved!');
+    });
+  }
+  $scope.stripSpan = function() {
+    return $('#show-piece').text().match(/\S+/gi).join(' ')
+  }
   vm.syn_json = {};
   vm.activePiece = {};
   vm.activeWord = '';

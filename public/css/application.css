@@ -22,7 +22,7 @@
 .btn.btn-outline { background-color: transparent; }
 
 .navbar-nav.navbar-right .btn:not(.collapsed) {
-  background-color: rgb(111, 84, 153);
+  background-color: black;
   border-color: black;
   color: rgb(255, 255, 255);
 }
