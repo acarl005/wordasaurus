@@ -2,7 +2,10 @@
   <div class="panel-body">
 
     <div ng-init="tab='button'">
-      <button class="btn btn-primary disp-inb" ng-click="tab='form'" ng-show="tab==='button'">Add Piece</button>
+      <button class="btn btn-primary disp-inb" ng-click="tab='form'" ng-show="tab==='button'">
+        <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+        Add Piece
+      </button>
       <form ng-show="tab==='form'" method="post" action="/pieces">
         <div class="form-group">
           <label for="new-title">Title</label>
@@ -30,15 +33,28 @@
       </ul>
     </div>
 
-    <button class="btn btn-info" ng-click="savePiece()">Save Piece</button>
+    <button class="btn btn-info" ng-click="savePiece()">
+      <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+      Save Piece
+    </button>
 
   </div>
 </div>
 
-<section id="show-piece">
-  <span ng-repeat="word in stuff.activePiece.content.split(' ') track by $index" ng-click="setActiveWord($index, word)">
-    {{word}}
-  </span>
+<section ng-init="syn = true">
+  <button ng-click="syn = !syn"class="btn btn-info">
+    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
+  </button>
+  <article ng-show="syn===true" id="show-piece" class="fancy">
+    <span ng-repeat="word in stuff.activePiece.content.split(' ') track by $index" ng-click="setActiveWord($index, word)">
+      {{word}}
+    </span>
+  </article>
+  <article ng-show="syn===false">
+    <div class="form-group">
+      <textarea class="form-control fancy" id="edit-piece" name="content" rows="20">{{stripSpan()}}</textarea>
+    </div>
+  </article>
 </section>
 
 <section id="synonyms">

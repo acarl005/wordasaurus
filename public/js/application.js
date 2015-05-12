@@ -62,7 +62,7 @@ angular.module('wordasaurus', ['ngRoute'])
     });
   }
   $scope.stripSpan = function() {
-    return $('#show-piece').text().match(/\S+/gi).join(' ')
+    return ($('#show-piece').text().match(/\S+/gi) || []).join(' ') || ''
   }
   vm.syn_json = {};
   vm.activePiece = {};
