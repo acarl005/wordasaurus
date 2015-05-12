@@ -17,7 +17,6 @@ end
 
 get('/users/current', provides: :json) do
   @user = find_user(current_user)
-  p @user.to_json
   return @user.to_json
 end
 
@@ -31,14 +30,15 @@ get('/users/:id/pieces', provides: :json) do
   return @user.pieces.to_json
 end
 
-get('pieces/:id/syns', provides: :json) do
+get('/pieces/:id/syns', provides: :json) do
   @piece = Piece.find(params[:id])
-  return @piece.syn_json
+  return @piece.syn_json || "{}"
 end
 
-post('pieces/:id/syns') do
+post('/pieces/:id/syns') do
   @piece = Piece.find(params[:id])
-  @piece.syn_json = params[:syn_json]
+  data_ = JSON.parse(request.body.read)
+  @piece.syn_json = data_['syn_json']
   if @piece.save
     status(200)
   else
