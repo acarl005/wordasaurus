@@ -68,15 +68,17 @@
   </section>
 
   <section id="synonyms">
-    <h4>{{stuff.activeWord}}</h4>
+    <h3>{{stuff.activeWord}}</h3>
 
     <article ng-repeat="(part, set) in stuff.syn_json[stuff.activeWord]">
-      <h5>{{part}}</h5>
-      <ul>
-        <li ng-repeat="syn in set.syn" ng-click="embedWord(syn)">
-          {{syn}}
-        </li>
-      </ul>
+      <div class="col-md-3 col-sm-4 well">
+        <h5>{{part}}</h5>
+        <ul class="syns">
+          <li ng-repeat="syn in set.syn" ng-click="embedWord(syn)" class="disp-inb label label-default">
+            &nbsp{{syn}}&nbsp
+          </li>
+        </ul>
+      </div>
     </article>
   </section>
 </div>

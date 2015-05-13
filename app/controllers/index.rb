@@ -24,6 +24,7 @@ post('/users') do
     login(@user)
   else
     status(400)
+    return erb(:index, locals: {log_error: false})
   end
   redirect('/')
 end
