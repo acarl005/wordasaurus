@@ -1,5 +1,6 @@
 get('/') do
-  erb(:index)
+  @user = User.new
+  erb(:index, locals: {log_error: false})
 end
 
 post('/session') do
@@ -7,12 +8,10 @@ post('/session') do
   if @user && @user.password == params[:password]
     login(@user)
     redirect('/')
-  else
-    status(401)
-    return 'invalid password'
   end
-  status(400)
-  return 'email not found'
+  @user = User.new(email: params[:email])
+  status(401)
+  erb(:index, locals: {log_error: true})
 end
 
 post('/users') do

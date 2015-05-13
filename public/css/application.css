@@ -66,6 +66,10 @@
   }
 }
 
+.alert-danger {
+  height: 30px;
+}
+
 .fancy {
   font-family: "roboto slab";
   line-height: 200%;

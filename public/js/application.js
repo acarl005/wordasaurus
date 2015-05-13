@@ -100,3 +100,8 @@ angular.module('wordasaurus', ['ngRoute'])
   };
 }])
 
+$(document).ready(function() {
+  if (window.location.href.match(/session/)) {
+    $('#sign-in').trigger('click');
+  };
+});
