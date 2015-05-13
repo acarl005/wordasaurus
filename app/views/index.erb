@@ -16,10 +16,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#/">Home</a></li>
         <li><a href="#/my_pieces">My Pieces</a></li>
-        <li><a href="#">#</a></li>
-        <li><a href="#">#</a></li>
-        <li><a href="#">#</a></li>
-        <li><a href="#">#</a></li>
+        <li><a href="http://acarl005.github.io">Andrew's Blog</a></li>
         <li>
           <a class="btn btn-default btn-outline btn-circle collapsed" id="sign-out" href="/logout" aria-expanded="false" aria-controls="nav-collapse2">Sign out</a>
         </li>
@@ -30,11 +27,8 @@
     <div class="collapse navbar-collapse" id="navbar-collapse-2">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#/">Home</a></li>
-        <li><a href="" class="prompt">My Pieces</a></li>
-        <li><a href="#">#</a></li>
-        <li><a href="#">#</a></li>
-        <li><a href="#">#</a></li>
-        <li><a href="#">#</a></li>
+        <li><a class="collapsed" data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2">My Pieces</a></li>
+        <li><a href="http://acarl005.github.io">Andrew's Blog</a></li>
         <li>
           <a class="btn btn-default btn-outline btn-circle collapsed" id="sign-in" data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2">Sign in</a>
         </li>
@@ -58,3 +52,12 @@
   </div>
 </nav>
 
+<main ng-view></main>
+
+<% if !logged_in? %>
+<section class="container mar-t-lg">
+  <center>
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#register-modal">Sign up now!</button>
+  </center>
+</section>
+<% end %>

@@ -39,26 +39,46 @@
   </h3>
 </section>
 
-<section class="container mar-t-lg">
-  <center>
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#register-modal">Sign up now!</button>
-  </center>
-</section>
-
 <div class="modal fade" id="register-modal">
   <div class="modal-dialog">
     <div class="modal-content">
+      <form class="form-horizontal" method="post" action="/users">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Sign up</h4>
+        <h4 class="modal-title">Registration Form</h4>
       </div>
       <div class="modal-body">
-        <p>One fine body&hellip;</p>
+        <fieldset>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="email">Email</label>
+          <div class="col-md-6">
+          <input id="email" name="email" type="email" placeholder="andy@example.org" class="form-control input-md" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="password">Password</label>
+          <div class="col-md-6">
+            <input id="password" name="password" type="password" class="form-control input-md" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="conf-password">Confirm Password</label>
+          <div class="col-md-6">
+            <input id="conf-password" name="conf_password" type="password" class="form-control input-md" required>
+          </div>
+        </div>
+
+        </fieldset>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <input type="submit" class="btn btn-primary" value="Sign up">
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </form>
+    </div>
+  </div>
+</div>

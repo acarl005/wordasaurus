@@ -15,6 +15,20 @@ post('/session') do
   return 'email not found'
 end
 
+post('/users') do
+  @user = User.new(
+    email: params[:email],
+    password: params[:password],
+  )
+  @user.errors.add(:password, "doesn't match") if params[:password] != params[:conf_password]
+  if @user.errors.empty? && @user.save
+    login(@user)
+  else
+    status(400)
+  end
+  redirect('/')
+end
+
 get('/logout') do
   logout
   redirect('/')
