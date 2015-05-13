@@ -100,4 +100,9 @@ $(document).ready(function() {
   if (window.location.href.match(/session/)) {
     $('#sign-in').trigger('click');
   };
+
+  $(document).on('click', '.fancy span', function(e) {
+    $('.fancy span').removeClass('grow');
+    $(e.target).addClass('grow');
+  });
 });
