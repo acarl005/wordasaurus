@@ -31,9 +31,7 @@ angular.module('wordasaurus', ['ngRoute'])
   });
   $scope.setActivePiece = function(piece) {
     vm.activePiece = piece
-    $http.get('/pieces/'+vm.activePiece.id+'/syns').success(function(res) {
-      vm.syn_json = res;
-    });
+    vm.syn_json = JSON.parse(JSON.parse(piece.syn_json));
   }
   $scope.getSyns = function(word) {
     if (!vm.syn_json[word]) {
@@ -51,8 +49,6 @@ angular.module('wordasaurus', ['ngRoute'])
   $scope.embedWord = function(word) {
     var target = $('#show-piece span:nth-child(' + (vm.activeIndex+1) + ')')
     target.text(target.text().replace(/[a-z]+/i, word));
-    // $('#edit-piece').val($scope.stripSpan());
-    // $('#edit-piece').text() = $scope.stripSpan();
   };
   $scope.saveSyns = function() {
     $http.post('/pieces/'+vm.activePiece.id+'/syns', {syn_json: JSON.stringify(vm.syn_json)} )
