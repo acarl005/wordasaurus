@@ -36,7 +36,6 @@ angular.module('wordasaurus', ['ngRoute'])
     });
   }
   $scope.getSyns = function(word) {
-    console.log(vm.syn_json[word])
     if (!vm.syn_json[word]) {
       $http.get(endpoint+word+'/json').success(function(res) {
         vm.syn_json[word] = res

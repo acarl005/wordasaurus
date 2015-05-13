@@ -1,80 +1,82 @@
-<div class="panel panel-default">
-  <div class="panel-body">
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-body">
 
-    <div ng-init="tab='button'">
-      <button class="btn btn-primary disp-inb" ng-click="tab='form'" ng-show="tab==='button'">
-        Add Piece
-        <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+      <div ng-init="tab='button'">
+        <button class="btn btn-primary disp-inb" ng-click="tab='form'" ng-show="tab==='button'">
+          Add Piece
+          <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+        </button>
+        <form ng-show="tab==='form'" method="post" action="/pieces">
+          <div class="form-group">
+            <label for="new-title">Title</label>
+            <input type="text" class="form-control" id="new-title" name="title" required>
+          </div>
+          <div class="form-group">
+            <label for="new-piece">New Piece</label>
+            <textarea class="form-control" id="new-piece" name="content" placeholder="Express yourself!" rows="10" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button ng-click="tab='button'" class="btn btn-default">Close</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+
+  <section ng-init="syn = true">
+    <div class="dropdown disp-inb">
+      <button class="btn btn-default dropdown-toggle disp-inb" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+        My Pieces
+        <span class="caret"></span>
       </button>
-      <form ng-show="tab==='form'" method="post" action="/pieces">
-        <div class="form-group">
-          <label for="new-title">Title</label>
-          <input type="text" class="form-control" id="new-title" name="title" required>
-        </div>
-        <div class="form-group">
-          <label for="new-piece">New Piece</label>
-          <textarea class="form-control" id="new-piece" name="content" placeholder="Express yourself!" rows="10" required></textarea>
-        </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <button ng-click="tab='button'" class="btn btn-default">Close</button>
-      </form>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li ng-repeat="piece in pieces" role="presentation">
+          <a ng-click="setActivePiece(piece)" role="menuitem" tabindex="-1" >{{piece.title}}</a>
+        </li>
+      </ul>
     </div>
 
-  </div>
-</div>
-
-
-<section ng-init="syn = true">
-  <div class="dropdown disp-inb">
-    <button class="btn btn-default dropdown-toggle disp-inb" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-      My Pieces
-      <span class="caret"></span>
+    <button class="btn btn-info disp-inb" ng-click="savePiece()">
+      Save Piece
+      <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
     </button>
 
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-      <li ng-repeat="piece in pieces" role="presentation">
-        <a ng-click="setActivePiece(piece)" role="menuitem" tabindex="-1" >{{piece.title}}</a>
-      </li>
-    </ul>
-  </div>
+    <button ng-click="syn = !syn; refreshActiveFromSyn()" ng-show="syn===true" class="btn btn-info btn-small">
+      Edit
+      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+    </button>
 
-  <button class="btn btn-info disp-inb" ng-click="savePiece()">
-    Save Piece
-    <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
-  </button>
+    <button ng-click="syn = !syn; refreshActiveFromEdit()" ng-show="syn===false" class="btn btn-info btn-small">
+      Edit
+      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+    </button>
 
-  <button ng-click="syn = !syn; refreshActiveFromSyn()" ng-show="syn===true" class="btn btn-info btn-small">
-    Edit
-    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-  </button>
+    <article ng-show="syn===true" id="show-piece" class="fancy mar-t-sm">
+      <span ng-repeat="word in stuff.activePiece.content.split(' ') track by $index" ng-click="setActiveWord($index, word)">
+        {{word}}
+      </span>
+    </article>
+    <article ng-show="syn===false" class="mar-t-sm">
+      <div class="form-group">
+        <textarea class="form-control fancy" id="edit-piece" name="content" rows="20">{{stuff.activePiece.content}}</textarea>
+      </div>
+    </article>
+  </section>
 
-  <button ng-click="syn = !syn; refreshActiveFromEdit()" ng-show="syn===false" class="btn btn-info btn-small">
-    Edit
-    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-  </button>
+  <section id="synonyms">
+    <h4>{{stuff.activeWord}}</h4>
 
-  <article ng-show="syn===true" id="show-piece" class="fancy mar-t-sm">
-    <span ng-repeat="word in stuff.activePiece.content.split(' ') track by $index" ng-click="setActiveWord($index, word)">
-      {{word}}
-    </span>
-  </article>
-  <article ng-show="syn===false" class="mar-t-sm">
-    <div class="form-group">
-      <textarea class="form-control fancy" id="edit-piece" name="content" rows="20">{{stuff.activePiece.content}}</textarea>
-    </div>
-  </article>
-</section>
-
-<section id="synonyms">
-  <h4>{{stuff.activeWord}}</h4>
-
-  <article ng-repeat="(part, set) in stuff.syn_json[stuff.activeWord]">
-    <h5>{{part}}</h5>
-    <ul>
-      <li ng-repeat="syn in set.syn" ng-click="embedWord(syn)">
-        {{syn}}
-      </li>
-    </ul>
-  </article>
-</section>
+    <article ng-repeat="(part, set) in stuff.syn_json[stuff.activeWord]">
+      <h5>{{part}}</h5>
+      <ul>
+        <li ng-repeat="syn in set.syn" ng-click="embedWord(syn)">
+          {{syn}}
+        </li>
+      </ul>
+    </article>
+  </section>
+</div>

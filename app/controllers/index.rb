@@ -15,6 +15,11 @@ post('/session') do
   return 'email not found'
 end
 
+get('/logout') do
+  logout
+  redirect('/')
+end
+
 get('/users/current', provides: :json) do
   @user = find_user(current_user)
   return @user.to_json
