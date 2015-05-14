@@ -1,3 +1,5 @@
+body { margin-bottom: 80px;}
+
 .navbar-brand { position: relative; z-index: 2; }
 
 .navbar-nav.navbar-right .btn { position: relative; z-index: 2; padding: 4px 20px; margin: 10px auto; transition: transform 0.3s; }
@@ -183,11 +185,31 @@
 #gif img { margin-left: auto; margin-right: auto; }
 .jumbotron { margin-bottom: 0px }
 
-.word-scroll h3{
-  line-height: 170%;
+.word-scroll {
   background-color: #ddd;
+  width: 100%;
+}
+
+.word-scroll h3 {
+  line-height: 170%;
+  width: 810px;
+  margin: 0 auto;
   padding: 50px;
 }
+@media screen and (max-width: 810px) {
+  .word-scroll h3 { width: 650px; }
+}
+@media screen and (max-width: 650px) {
+  .word-scroll h3 { width: 550px; }
+}
+@media screen and (max-width: 550px) {
+  .word-scroll h3 {
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 400px;
+  }
+}
+
 
 .syns li {
   margin-right: 5px;
@@ -227,3 +249,5 @@
 }
 
 .add-panel { background-color: #eeeeef }
+
+
