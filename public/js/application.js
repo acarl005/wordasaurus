@@ -14,11 +14,6 @@ angular.module('wordasaurus', ['ngRoute'])
       templateUrl: 'partials/users/index.html',
     })
 
-    .when('/users/:id', {
-      templateUrl: 'templates/pages/users/show.html',
-      controller: 'UsersShowController'
-    })
-
     .otherwise({redirectTo: '/'});
 }])
 
