@@ -1,4 +1,8 @@
-body { margin-bottom: 80px;}
+html { min-height: 100%; position: relative; }
+body { margin: 0 0 150px; padding-bottom: 250px;}
+
+.wrapper { min-height: 100%;
+  margin: 0 auto -150px; }
 
 .navbar-brand { position: relative; z-index: 2; }
 
@@ -250,4 +254,20 @@ body { margin-bottom: 80px;}
 
 .add-panel { background-color: #eeeeef }
 
+footer {
+  height: 150px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #181818;
+  background-image: -webkit-linear-gradient(top, #404040, #000000);
+  background-image:         linear-gradient(to bottom, #404040, #000000);
+}
+
+.bhl {
+  float: left;
+  padding-top: 20px;
+}
+.bhl img { clear: left; }
 
