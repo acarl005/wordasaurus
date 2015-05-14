@@ -78,6 +78,13 @@ body { margin: 0 0 150px; padding-bottom: 250px;}
 .disp-inb { display: inline-block; }
 .hide { display: none; }
 
+#dino {
+  position: absolute;
+  width: 200px;
+  top: 240px;
+  right: 50px;
+}
+
 #synonyms h4,
 #synonyms h5 {
   font-weight: 600;
