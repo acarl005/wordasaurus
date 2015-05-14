@@ -87,35 +87,6 @@ post('/pieces') do
   end
 end
 
-get('/sample', provides: :json) do
-  return {
-    noun: {
-      syn: [
-        "illustration",
-        "instance",
-        "representative",
-        "model",
-        "exemplar",
-        "good example",
-        "deterrent example",
-        "lesson",
-        "object lesson",
-        "case",
-        "exercise",
-        "admonition",
-        "happening",
-        "ideal",
-        "information",
-        "internal representation",
-        "mental representation",
-        "monition",
-        "natural event",
-        "occurrence",
-        "occurrent",
-        "representation",
-        "warning",
-        "word of advice"
-      ]
-    }
-  }.to_json
+get('/synonyms/:word', provides: :json) do
+  HTTParty.get("http://words.bighugelabs.com/api/2/#{ENV['THES_API']}/#{params[:word]}/json").parsed_response
 end

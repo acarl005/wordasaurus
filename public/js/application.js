@@ -19,7 +19,6 @@ angular.module('wordasaurus', ['ngRoute'])
 
 .controller('HomeController', ['$scope', '$http', 'User' , 'Piece', function ($scope, $http, User, Piece) {
   var vm = this;
-  var endpoint = 'http://words.bighugelabs.com/api/2/36312c87d8575d1476ece69c8dd8bdc1/'
   User.current().success(function(res) {
     $scope.user = res;
     Piece.all($scope.user.id).success(function(res) {$scope.pieces = res});
@@ -31,7 +30,7 @@ angular.module('wordasaurus', ['ngRoute'])
   $scope.getSyns = function(word) {
     if (!vm.syn_json[word]) {
       console.log('getting');
-      $http.get(endpoint+word+'/json').success(function(res) {
+      $http.get('/synonyms/'+word).success(function(res) {
         vm.syn_json[word] = res
         $scope.saveSyns();
       });
