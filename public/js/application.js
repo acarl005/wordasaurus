@@ -104,4 +104,19 @@ $(document).ready(function() {
     $('.fancy span').removeClass('grow');
     $(e.target).addClass('grow');
   });
+
+  //registration form validation
+  $(document).on('change', '.modal-body input', function() {
+    if ($('#reg-password').val() === $('#conf-password').val() && $('#conf-password').val()) {
+      $('.passw').parents('.form-group')
+      .addClass('has-success')
+      .removeClass('has-error');
+      $('.modal-footer').find('.btn-primary').removeAttr('disabled');
+    } else {
+      $('.passw').parents('.form-group')
+      .removeClass('has-success')
+      .addClass('has-error');
+      $('.modal-footer').find('.btn-primary').attr('disabled', 'disabled');
+    };
+  });
 });
