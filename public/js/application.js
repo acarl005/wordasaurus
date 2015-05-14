@@ -68,7 +68,6 @@ angular.module('wordasaurus', ['ngRoute'])
   $scope.refreshActiveFromSyn = function() {
     vm.activePiece.content = $scope.stripSpan();
     $('#edit-piece').val(vm.activePiece.content);
-    debugger;
   }
   $scope.refreshActiveFromEdit = function() {
     vm.activePiece.content = $('#edit-piece').val();

@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="panel panel-default">
+  <div class="panel panel-default add-panel">
     <div class="panel-body">
 
       <div ng-init="tab='button'">
@@ -51,7 +51,7 @@
     </button>
 
     <button ng-click="syn = !syn; refreshActiveFromEdit()" ng-show="syn===false" class="btn btn-info btn-small">
-      Edit
+      Done
       <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
     </button>
 
@@ -75,6 +75,9 @@
       <div class="col-md-3 col-sm-4 well">
         <h5>{{part}}</h5>
         <ul class="syns">
+          <li ng-click="embedWord(stuff.activeWord)" class="disp-inb label label-default">
+            &nbsp{{stuff.activeWord}}&nbsp
+          </li>
           <li ng-repeat="syn in set.syn" ng-click="embedWord(syn)" class="disp-inb label label-default">
             &nbsp{{syn}}&nbsp
           </li>
