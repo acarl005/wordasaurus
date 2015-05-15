@@ -10,15 +10,23 @@ ENV['RACK_ENV'] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'shoulda-matchers'
 require 'rack/test'
-require 'capybara'
 require 'capybara/rspec'
+
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
+Capybara.app = Sinatra::Application
+Capybara.javascript_driver = :selenium
 
 RSpec.configure do |config|
   config.include Rack::Test::Methods
+  config.before do
+    User.delete_all
+    Piece.delete_all
+  end
 end
 
 def app
   Sinatra::Application
 end
 
-Capybara.app = app.new
