@@ -29,6 +29,9 @@ angular.module('wordasaurus', ['ngRoute'])
       content: content,
     }).success(function(payload) {
       $scope.pieces.push(payload);
+      vm.tab = 'button';
+      $('#new-title').val('');
+      $('#new-piece').val('');
     });
   };
   $scope.setActivePiece = function(piece) {

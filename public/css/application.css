@@ -277,19 +277,6 @@ footer {
 }
 .bhl img { clear: left; }
 
-
-.ng-touched.ng-invalid.help-block,
-.ng-touched.ng-invalid.control-label,
-.ng-touched.ng-invalid.radio,
-.ng-touched.ng-invalid.checkbox,
-.ng-touched.ng-invalid.radio-inline,
-.ng-touched.ng-invalid.checkbox-inline,
-.ng-touched.ng-invalid.radio label,
-.ng-touched.ng-invalid.checkbox label,
-.ng-touched.ng-invalid.radio-inline label,
-.ng-touched.ng-invalid.checkbox-inline label {
-  color: #b94a48;
-}
 .ng-touched.ng-invalid.form-control {
   border-color: #b94a48;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -300,11 +287,14 @@ footer {
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
 }
-.ng-touched.ng-invalid.input-group-addon {
-  color: #b94a48;
+.ng-submitted .ng-invalid.form-control {
   border-color: #b94a48;
-  background-color: #f2dede;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
-.ng-touched.ng-invalid.form-control-feedback {
-  color: #b94a48;
+.ng-submitted .ng-invalid.form-control:focus {
+  border-color: #953b39;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
 }
+
