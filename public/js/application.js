@@ -76,7 +76,6 @@ angular.module('wordasaurus', ['ngRoute'])
           $scope.pieces.splice(i,1);
         };
       };
-      debugger;
     });
   };
   vm.syn_json = {};
