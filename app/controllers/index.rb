@@ -78,10 +78,11 @@ end
 
 post('/pieces') do
   @user = find_user(current_user)
-  @piece = Piece.new(title: params[:title], content: params[:content])
+  data = JSON.parse(request.body.read)
+  @piece = Piece.new(title: data["title"], content: data["content"])
   if @user.pieces << @piece
     status(200)
-    redirect('/#/my_pieces')
+    return @piece.to_json
   else
     status(401)
   end

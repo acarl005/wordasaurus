@@ -23,6 +23,17 @@ angular.module('wordasaurus', ['ngRoute'])
     $scope.user = res;
     Piece.all($scope.user.id).success(function(res) {$scope.pieces = res});
   });
+  $scope.createPiece = function(title, content) {
+    Piece.create({
+      title: title,
+      content: content,
+    }).success(function(payload) {
+      $scope.pieces.push(payload);
+      vm.tab = 'button';
+      $('#new-title').val('');
+      $('#new-piece').val('');
+    });
+  };
   $scope.setActivePiece = function(piece) {
     vm.activePiece = piece;
     vm.syn_json = JSON.parse(piece.syn_json);
@@ -91,6 +102,9 @@ angular.module('wordasaurus', ['ngRoute'])
   return {
     all: function(user_id) {
       return $http.get('users/'+user_id+'/pieces');
+    },
+    create: function(data) {
+      return $http.post('/pieces', data);
     }
   };
 }])
