@@ -27,6 +27,8 @@ angular.module('wordasaurus', ['ngRoute'])
     Piece.create({
       title: title,
       content: content,
+    }).success(function(payload) {
+      $scope.pieces.push(payload);
     });
   };
   $scope.setActivePiece = function(piece) {
