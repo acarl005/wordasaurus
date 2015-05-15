@@ -87,6 +87,17 @@ post('/pieces') do
   end
 end
 
+delete('/pieces/:id') do
+  @piece = Piece.find(params[:id])
+  if @piece.user.id == current_user
+    @piece.destroy
+    return params[:id]
+  else
+    status 422
+    'errors'
+  end
+end
+
 get('/synonyms/:word', provides: :json) do
   HTTParty.get("http://words.bighugelabs.com/api/2/#{ENV['THES_API']}/#{params[:word]}/json").parsed_response
 end

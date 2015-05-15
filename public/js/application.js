@@ -26,7 +26,7 @@ angular.module('wordasaurus', ['ngRoute'])
   $scope.setActivePiece = function(piece) {
     vm.activePiece = piece;
     vm.syn_json = JSON.parse(piece.syn_json);
-  }
+  };
   $scope.getSyns = function(word) {
     if (!vm.syn_json[word]) {
       console.log('getting');
@@ -55,17 +55,30 @@ angular.module('wordasaurus', ['ngRoute'])
     $http.put('/pieces/'+vm.activePiece.id, {content: $scope.stripSpan()} ).success(function() {
       alert('Saved!');
     });
-  }
+  };
   $scope.stripSpan = function() {
     return ($('#show-piece').text().match(/\S+/gi) || []).join(' ')
-  }
+  };
   $scope.refreshActiveFromSyn = function() {
     vm.activePiece.content = $scope.stripSpan();
     $('#edit-piece').val(vm.activePiece.content);
-  }
+  };
   $scope.refreshActiveFromEdit = function() {
     vm.activePiece.content = $('#edit-piece').val();
-  }
+  };
+  $scope.deleteActive = function() {
+    $http.delete('/pieces/'+vm.activePiece.id).success(function(id) {
+      vm.syn_json = {};
+      vm.activePiece = {};
+      vm.activeWord = '';
+      for (var i = 0; i < $scope.pieces.length; i++) {
+        if ($scope.pieces[i].id == id) {
+          $scope.pieces.splice(i,1);
+        };
+      };
+      debugger;
+    });
+  };
   vm.syn_json = {};
   vm.activePiece = {};
   vm.activeWord = '';
