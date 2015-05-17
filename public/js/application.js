@@ -117,6 +117,9 @@ $(document).ready(function() {
   if (window.location.href.match(/session/)) {
     $('#sign-in').trigger('click');
   };
+  if (window.location.href.match(/users/)) {
+    document.getElementById('reg-but').click();
+  };
 
   $(document).on('click', '.fancy span', function(e) {
     $('.fancy span').removeClass('grow');
