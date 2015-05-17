@@ -2,23 +2,19 @@ angular.module('wordasaurus', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider
-    // .when('/', {
-    //   redirectTo: '/notes'
-    // })
+  .when('/', {
+    templateUrl: 'partials/home/index.html',
+  })
 
-    .when('/', {
-      templateUrl: 'partials/home/index.html',
-    })
+  .when('/my_pieces', {
+    templateUrl: 'partials/users/index.html',
+  })
 
-    .when('/my_pieces', {
-      templateUrl: 'partials/users/index.html',
-    })
+  .otherwise({redirectTo: '/'});
+}]);
 
-    .otherwise({redirectTo: '/'});
-}])
-
+angular.module('wordasaurus')
 .controller('HomeController', ['$scope', '$http', 'User' , 'Piece', function ($scope, $http, User, Piece) {
-  // var vm = this;
   User.current().success(function(res) {
     $scope.user = res;
     Piece.all($scope.user.id).success(function(res) {$scope.pieces = res});

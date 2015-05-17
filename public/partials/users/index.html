@@ -35,7 +35,7 @@
 
       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
         <li ng-repeat="piece in pieces" role="presentation">
-          <a ng-click="setActivePiece(piece)" role="menuitem" tabindex="-1" >{{piece.title}}</a>
+          <a ng-click="setActivePiece(piece)" role="menuitem" tabindex="-1">{{piece.title}}</a>
         </li>
       </ul>
     </div>
@@ -75,9 +75,9 @@
   <section id="synonyms">
     <h3>{{activeWord}}</h3>
 
-    <article ng-repeat="(part, set) in syn_json[activeWord]">
+    <article ng-repeat="(partOfSpeech, set) in syn_json[activeWord]">
       <div class="col-md-3 col-sm-4 well">
-        <h5>{{part}}</h5>
+        <h5>{{partOfSpeech}}</h5>
         <ul class="syns">
           <li ng-click="embedWord(activeWord)" class="disp-inb label label-default">
             &nbsp{{activeWord}}&nbsp
