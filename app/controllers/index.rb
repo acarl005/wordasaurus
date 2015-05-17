@@ -1,6 +1,6 @@
 get('/') do
   @user = User.new
-  erb(:index, locals: {log_error: false})
+  erb(:index, locals: {log_error: false, reg_error: false})
 end
 
 post('/session') do
@@ -11,7 +11,7 @@ post('/session') do
   end
   @user = User.new(email: params[:email])
   status(401)
-  erb(:index, locals: {log_error: true})
+  erb(:index, locals: {log_error: true, reg_error: false})
 end
 
 post('/users') do
@@ -19,12 +19,11 @@ post('/users') do
     email: params[:email],
     password: params[:password],
   )
-  @user.errors.add(:password, "doesn't match") if params[:password] != params[:conf_password]
-  if @user.errors.empty? && @user.save
+  if @user.save
     login(@user)
   else
     status(400)
-    return erb(:index, locals: {log_error: false})
+    return erb(:index, locals: {log_error: false, reg_error: @user.errors.full_messages})
   end
   redirect('/')
 end
@@ -79,6 +78,7 @@ end
 post('/pieces') do
   @user = find_user(current_user)
   data = JSON.parse(request.body.read)
+  # binding.pry
   @piece = Piece.new(title: data["title"], content: data["content"])
   if @user.pieces << @piece
     status(200)

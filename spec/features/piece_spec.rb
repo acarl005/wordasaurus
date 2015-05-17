@@ -10,7 +10,7 @@ describe 'piece CRUD', js: true, type: :feature do
   end
   before do
     visit('/')
-    click_link('Login form')
+    page.find('.glyphicon-log-in').click
     within('#login-form') do
       fill_in('email', with: 'sup@example.org')
       fill_in('password', with: 'corn')
@@ -48,10 +48,11 @@ describe 'piece CRUD', js: true, type: :feature do
 
     it 'should edit the text' do
       click_button('Edit')
-      fill_in('content', with: 'reogherougbeprougnre')
+      fill_in('edit-content', with: 'reogherougbeprougnre')
       click_button('Done')
       page.should have_content('reogherougbeprougnre')
     end
+
   end
 
 end

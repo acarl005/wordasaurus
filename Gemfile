@@ -14,7 +14,6 @@ gem 'httparty'
 gem 'rake'
 gem 'bcrypt'
 gem 'shotgun'
-gem 'hirb'
 
 group :test do
   gem 'shoulda-matchers'
@@ -22,11 +21,10 @@ group :test do
   gem 'rspec', '~>3.0'
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'webmock'
 end
 
 group :test, :development do
-  gem 'factory_girl'
-  gem 'faker'
   gem 'pry'
   gem 'dotenv'
 end

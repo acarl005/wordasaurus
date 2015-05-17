@@ -12,7 +12,7 @@ describe 'the login process', js: true, type: :feature do
   context 'when invalid' do
     it 'rejects invalid info' do
       visit('/')
-      click_link('Login form')
+      page.find('.glyphicon-log-in').click
       within('#login-form') do
         fill_in('email', with: 'andy@example.org')
         fill_in('password', with: 'erjigbe')
@@ -25,7 +25,7 @@ describe 'the login process', js: true, type: :feature do
   context 'when valid' do
     it 'signs in and out' do
       visit('/')
-      click_link('Login form')
+      page.find('.glyphicon-log-in').click
       within('#login-form') do
         fill_in('email', with: 'andy@example.org')
         fill_in('password', with: 'corn')
