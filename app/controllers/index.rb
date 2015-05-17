@@ -79,6 +79,7 @@ end
 post('/pieces') do
   @user = find_user(current_user)
   data = JSON.parse(request.body.read)
+  # binding.pry
   @piece = Piece.new(title: data["title"], content: data["content"])
   if @user.pieces << @piece
     status(200)

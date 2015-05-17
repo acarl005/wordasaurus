@@ -24,6 +24,7 @@ angular.module('wordasaurus', ['ngRoute'])
     Piece.all($scope.user.id).success(function(res) {$scope.pieces = res});
   });
   $scope.createPiece = function(title, content) {
+    debugger;
     Piece.create({
       title: title,
       content: content,
