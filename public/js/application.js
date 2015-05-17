@@ -94,10 +94,6 @@ angular.module('wordasaurus', ['ngRoute'])
   vm.activeWord = '';
 }])
 
-// .controller('HomeController', ['$scope', function ($scope) {
-//   $scope.corn = 'wtf';
-// }])
-
 .factory('Piece', ['$http', function NoteFactory($http) {
   return {
     all: function(user_id) {
@@ -115,7 +111,7 @@ angular.module('wordasaurus', ['ngRoute'])
       return $http.get('users/current');
     },
     find: function(id) {
-      return $http.get('users/'+id)
+      return $http.get('users/'+id);
     }
   };
 }])

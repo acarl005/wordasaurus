@@ -25,16 +25,17 @@
 
     <% else %>
     <div class="collapse navbar-collapse" id="navbar-collapse-2">
+
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#/">Home</a></li>
         <li><a class="collapsed" data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2">My Pieces</a></li>
         <li><a href="http://acarl005.github.io">Andrew's Blog</a></li>
         <li>
-          <a class="btn btn-default btn-outline btn-circle collapsed" id="sign-in" data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2">Login form</a>
+          <a class="btn btn-default btn-outline btn-circle collapsed glyphicon glyphicon-log-in" id="sign-in" data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2"></a>
         </li>
       </ul>
-      <div class="collapse nav navbar-nav nav-collapse slide-down" id="nav-collapse2">
 
+      <div class="collapse nav navbar-nav nav-collapse slide-down" id="nav-collapse2">
         <form id="login-form" method="post" action="/session" class="navbar-form navbar-right form-inline" role="form">
           <div class="form-group">
             <label class="sr-only" for="email">Email</label>
@@ -47,6 +48,7 @@
           <button type="submit" class="btn btn-primary">Sign in</button>
         </form>
       </div>
+
     </div>
     <% end %>
 

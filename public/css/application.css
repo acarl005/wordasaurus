@@ -11,7 +11,7 @@ body { margin: 0 0 150px; padding-bottom: 250px;}
 .navbar .navbar-collapse { position: relative; overflow: hidden !important; }
 .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 22px; }
 
-.navbar .nav-collapse { position: absolute; z-index: 1; top: 0; left: 0; right: 0; bottom: 0; margin: 0; padding-right: 120px; padding-left: 80px; width: 100%; }
+.navbar .nav-collapse { position: absolute; z-index: 1; top: 0; left: 0; right: 0; bottom: 0; margin: 0; padding-right: 70px; padding-left: 60px; width: 100%; }
 .navbar.navbar-default .nav-collapse {
   background-color: #f8f8f8;
   background-image: -webkit-linear-gradient(#fff, #eee 50%, #e4e4e4);
