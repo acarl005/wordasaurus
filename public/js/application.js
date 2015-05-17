@@ -20,13 +20,13 @@ angular.module('wordasaurus')
     Piece.all($scope.user.id).success(function(res) {$scope.pieces = res});
   });
   $scope.createPiece = function(title, content) {
-    debugger;
     Piece.create({
       title: title,
       content: content,
     }).success(function(payload) {
       $scope.pieces.push(payload);
-      $scope.tab = 'button';
+      debugger;
+      vm.tab = 'button';
       $('#new-title').val('');
       $('#new-piece').val('');
     });
@@ -86,6 +86,8 @@ angular.module('wordasaurus')
       };
     });
   };
+  var vm = this;
+  vm.tab = 'button';
   $scope.syn_json = {};
   $scope.activePiece = {};
   $scope.activeWord = '';

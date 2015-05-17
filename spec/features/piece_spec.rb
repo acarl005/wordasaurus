@@ -53,10 +53,6 @@ describe 'piece CRUD', js: true, type: :feature do
       page.should have_content('reogherougbeprougnre')
     end
 
-    it 'should get synonyms' do
-      HTTP
-      binding.pry
-    end
   end
 
 end
