@@ -115,8 +115,10 @@ angular.module('wordasaurus')
   return {
     restrict: 'E',
     templateUrl: 'partials/directives/add-piece.html',
+    scope: {},
     link: function(scope) {
       scope.tab = 'button';
+      scope.createPiece = scope.$parent.createPiece;
     }
   };
 });
