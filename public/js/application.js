@@ -14,6 +14,7 @@ angular.module('wordasaurus', ['ngRoute'])
 }]);
 
 angular.module('wordasaurus')
+
 .controller('HomeController', ['$scope', '$http', 'User' , 'Piece', function ($scope, $http, User, Piece) {
   User.current().success(function(res) {
     $scope.user = res;
@@ -121,7 +122,21 @@ angular.module('wordasaurus')
       scope.createPiece = scope.$parent.createPiece;
     }
   };
-});
+})
+
+.directive('controlPiece', function() {
+  return {
+    restrict: 'E',
+    templateUrl: 'partials/directives/control-piece.html'
+  };
+})
+
+.directive('synonyms', function() {
+  return {
+    restrict: 'E',
+    templateUrl: 'partials/directives/synonyms.html'
+  };
+})
 
 $(document).ready(function() {
   if (window.location.href.match(/session/)) {

@@ -2,66 +2,8 @@
 
   <add-piece></add-piece>
 
-  <section ng-init="syn = true">
-    <div class="dropdown disp-inb">
-      <button class="btn btn-default dropdown-toggle disp-inb" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-        My Pieces
-        <span class="caret"></span>
-      </button>
+  <control-piece></control-piece>
 
-      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-        <li ng-repeat="piece in pieces" role="presentation">
-          <a ng-click="setActivePiece(piece)" role="menuitem" tabindex="-1">{{piece.title}}</a>
-      </ul>
-    </div>
+  <synonyms></synonyms>
 
-    <button class="btn btn-info disp-inb" ng-click="savePiece()">
-      Save Piece
-      <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
-    </button>
-
-    <button ng-click="syn = !syn; refreshActiveFromSyn()" ng-show="syn===true" class="btn btn-info btn-small">
-      Edit
-      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-    </button>
-
-    <button ng-click="syn = !syn; refreshActiveFromEdit()" ng-show="syn===false" class="btn btn-info btn-small">
-      Done
-      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-    </button>
-
-    <button ng-click="deleteActive()" class="btn btn-danger pull-right">
-      Delete
-    </button>
-
-    <article ng-show="syn===true" id="show-piece" class="fancy mar-t-sm">
-      <span ng-repeat="word in activePiece.content.split(' ') track by $index" ng-click="setActiveWord($index, word)">
-        {{word}}
-      </span>
-    </article>
-
-    <article ng-show="syn===false" class="mar-t-sm">
-      <div class="form-group">
-        <textarea class="form-control fancy" id="edit-piece" name="edit-content" rows="20">{{activePiece.content}}</textarea>
-      </div>
-    </article>
-  </section>
-
-  <section id="synonyms">
-    <h3>{{activeWord}}</h3>
-
-    <article ng-repeat="(partOfSpeech, set) in syn_json[activeWord]">
-      <div class="col-md-3 col-sm-4 well">
-        <h5>{{partOfSpeech}}</h5>
-        <ul class="syns">
-          <li ng-click="embedWord(activeWord)" class="disp-inb label label-default">
-            &nbsp{{activeWord}}&nbsp
-          </li>
-          <li ng-repeat="syn in set.syn" ng-click="embedWord(syn)" class="disp-inb label label-default">
-            &nbsp{{syn}}&nbsp
-          </li>
-        </ul>
-      </div>
-    </article>
-  </section>
 </div>
