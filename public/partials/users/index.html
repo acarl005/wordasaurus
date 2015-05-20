@@ -1,30 +1,6 @@
 <div class="container">
-  <div class="panel panel-default add-panel">
-    <div class="panel-body">
 
-      <div>
-        <button class="btn btn-primary disp-inb" ng-click="home.tab='form'" ng-show="home.tab==='button'">
-          Add Piece
-          <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
-        </button>
-        <form ng-show="home.tab==='form'" ng-submit="createForm.$valid && createPiece(title, content)" name="createForm" novalidate>
-          <div class="form-group">
-            <label for="new-title">Title</label>
-            <input type="text" class="form-control" id="new-title" name="title" required ng-model="title">
-          </div>
-          <div class="form-group">
-            <label for="new-piece">New Piece</label>
-            <textarea class="form-control" id="new-piece" name="content" placeholder="Express yourself!" rows="10" required ng-model="content"></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-primary">Submit</button>
-          <button ng-click="home.tab='button'" class="btn btn-default">Close</button>
-        </form>
-      </div>
-
-    </div>
-  </div>
-
+  <add-piece></add-piece>
 
   <section ng-init="syn = true">
     <div class="dropdown disp-inb">
@@ -36,7 +12,6 @@
       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
         <li ng-repeat="piece in pieces" role="presentation">
           <a ng-click="setActivePiece(piece)" role="menuitem" tabindex="-1">{{piece.title}}</a>
-        </li>
       </ul>
     </div>
 

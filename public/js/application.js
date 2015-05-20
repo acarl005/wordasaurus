@@ -25,7 +25,6 @@ angular.module('wordasaurus')
       content: content,
     }).success(function(payload) {
       $scope.pieces.push(payload);
-      debugger;
       vm.tab = 'button';
       $('#new-title').val('');
       $('#new-piece').val('');
@@ -114,6 +113,13 @@ angular.module('wordasaurus')
     }
   };
 }])
+
+.directive('addPiece', function() {
+  return {
+    restrict: 'E',
+    templateUrl: 'partials/directives/add-piece.html'
+  };
+});
 
 $(document).ready(function() {
   if (window.location.href.match(/session/)) {
