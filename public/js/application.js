@@ -7,7 +7,7 @@ angular.module('wordasaurus', ['ngRoute'])
   })
 
   .when('/my_pieces', {
-    templateUrl: 'partials/users/index.html',
+    templateUrl: 'partials/pieces/index.html',
   })
 
   .otherwise({redirectTo: '/'});
@@ -25,7 +25,6 @@ angular.module('wordasaurus')
       content: content,
     }).success(function(payload) {
       $scope.pieces.push(payload);
-      vm.tab = 'button';
       $('#new-title').val('');
       $('#new-piece').val('');
     });
@@ -85,8 +84,6 @@ angular.module('wordasaurus')
       };
     });
   };
-  var vm = this;
-  vm.tab = 'button';
   $scope.syn_json = {};
   $scope.activePiece = {};
   $scope.activeWord = '';
@@ -117,7 +114,10 @@ angular.module('wordasaurus')
 .directive('addPiece', function() {
   return {
     restrict: 'E',
-    templateUrl: 'partials/directives/add-piece.html'
+    templateUrl: 'partials/directives/add-piece.html',
+    link: function(scope) {
+      scope.tab = 'button';
+    }
   };
 });
 
