@@ -35,12 +35,12 @@ end
 
 get('/users/current', provides: :json) do
   @user = find_user(current_user)
-  return @user.to_json
+  return @user.to_json(except: [:password_crypt, :updated_at])
 end
 
 get('/users/:id', provides: :json) do
   @user = find_user(params[:id].to_i)
-  return @user.to_json
+  return @user.to_json(except: [:password_crypt, :updated_at])
 end
 
 get('/users/:id/pieces', provides: :json) do
