@@ -125,3 +125,6 @@ DEPENDENCIES
   sinatra
   sinatra-contrib
   webmock
+
+BUNDLED WITH
+   1.10.3
